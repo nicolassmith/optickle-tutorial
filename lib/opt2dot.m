@@ -36,6 +36,9 @@ end
 for snLink=1:opt.Nlink,
     [src_name, src_sn, src_port] = getSourceName(opt, snLink);
     [snk_name, snk_sn, snk_port] = getSinkName(opt, snLink);
+    if snk_sn==0 || src_sn == 0
+        continue
+    end
     fprintf(fid, '     "%s" -> "%s" [label="%s&rarr;%s"];\n', ...
         getOpticName(opt, src_sn), getOpticName(opt, snk_sn), ...
         opt.optic{src_sn}.outNames{src_port}{1}, ...
